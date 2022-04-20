@@ -19,7 +19,7 @@ $ psql -- ingresar a consola psql
 -- ● fecha: fecha del sistema.
 -- Mediante el uso de transacciones, realiza las consultas correspondientes para este requerimiento y luego consulta la tabla producto para validar si fue efectivamente descontado en el stock. (3 Puntos)
 
-BEGIN;
+BEGIN TRANSACTION;
 INSERT INTO compra (id, cliente_id, fecha)
 VALUES (33, 1, current_date);
 INSERT INTO detalle_compra (id, producto_id, compra_id, cantidad)
@@ -36,7 +36,7 @@ SELECT * FROM compra;
 -- -- ● fecha: fecha del sistema.
 -- -- Mediante el uso de transacciones, realiza las consultas correspondientes para este requerimiento y luego consulta la tabla producto para validar que si alguno de ellos se queda sin stock, no se realice la compra. (3 Puntos)
 
-BEGIN;
+BEGIN TRANSACTION;
 INSERT INTO compra(id, cliente_id, fecha)
 VALUES(34, 2, current_date);
 -- Producto1
