@@ -215,7 +215,8 @@ SELECT x.columna1, x.columna2,...
 FROM(
     SELECT columna1, columna2,...
     FROM nombre_tabla2
-    WHERE condicion)
+    WHERE condicion
+    )
     AS x
 INNER JOIN nombre_tabla1 AS y ON x.columna1 = y.columna1;
 
@@ -224,5 +225,57 @@ INNER JOIN nombre_tabla1 AS y ON x.columna1 = y.columna1;
     -- Una subquery puede tener sólo una columna especificada en SELECT.
     -- ORDER BY no se puede utilizar en una consulta interna.
     -- Para obtener un resultado similar a ORDER BY dentro de una consulta interna, se puede implementar el comando GROUP BY.
-    -- Aquellas consultas internas que retornen más de una fila sólo pueden ser utilizadas con operadores de múltiples valores como IN
+    -- Las consultas internas que retornen más de una fila sólo pueden ser utilizadas con operadores de múltiples valores como IN
+
+
+-- TRANSACCIONES
+BEGIN; -- El sistema permite que se ejecuten todas las sentencias SQL que necesitemos.
+COMMIT; -- Guarda los cambios de la transacción
+SAVEPOINT; -- Guarda el punto de partida al cual volver a la hora de aplicar ROLLBACK
+SAVEPOINT nombre_checkpoint;
+ROLLBACK; -- Retrocede los cambios realizados
+ROLLBACK TO nombre_checkpoint;
+SET TRANSACTION; -- Le asigna nombre a la transacción
+
+-- Ejemplos Transacciones:
+BEGIN;
+UPDATE cuentas SET balance = balance + 100 WHERE numero_cuenta = 1;
+UPDATE cuentas SET balance = balance + 200 WHERE numero_cuenta = 2;
+COMMIT;
+
+
+BEGIN;
+INSERT INTO cuentas (numero_cuenta, balance)
+VALUES (3, 5000);
+SAVEPOINT nueva_cuenta;
+UPDATE cuentas SET balance = balance + 300 WHERE numero_cuenta = 2;
+ROLLBACK TO nueva_cuenta;
+COMMIT;
+
+-- postgres por defecto tiene activados los autocommit, para verificar esto, ejecutar en la consola sql:
+\echo :AUTOCOMMIT
+
+-- para desactivar el autocommit ejecutar este codigo en la consola sql:
+\set AUTOCOMMIT off
+
+-- para reactivar el autocommit ejecutar en la consola sql:
+\set AUTOCOMMIT on
+
+-- RESPALDAR (EXPORTAR)BASE DE DATOS
+pg_dump -U nombre_usuario nombre_db > nombre_respaldo.sql
+
+-- RESPALDAR TODAS LAS BASES DE DATOS
+sudo su - postgres
+pg_dumpall > /directorio/dumpall.sql
+
+
+-- RESTAURAR UNA BASE DE DATOS
+-- Primero se debe crear la base de datos en psql
+-- Una vez creada traemos el respaldo
+sudo su - postgres
+psql -U postgres nombredb < archivo_restauracion.sql
+
+-- RESTAURAR TODAS LAS BASES DE DATOS
+sudo su - postgres
+psql -f /var/lib/pgsql/backups/dumpall.sql mydb
 
