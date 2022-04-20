@@ -26,7 +26,6 @@ INSERT INTO detalle_compra (id, producto_id, compra_id, cantidad)
 VALUES (43, 9, 33, 5);
 UPDATE producto SET stock = stock - 5 WHERE id = 9; 
 COMMIT;
-SAVEPOINT primera_compra; -- creamos un checkpoint.
 -- Ahora consultamos la tabla producto y la tabla compra para ver el resulado de la transacción.
 SELECT * FROM producto;
 SELECT * FROM compra;
