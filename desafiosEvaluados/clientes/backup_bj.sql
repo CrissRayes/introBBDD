@@ -246,8 +246,7 @@ COPY public.compra (id, cliente_id, fecha) FROM stdin;
 30	5	2020-04-09
 31	1	2020-03-29
 32	2	2020-03-29
-33	1	2022-04-19
-34	2	2022-04-19
+33	1	2022-04-20
 \.
 
 
@@ -299,8 +298,6 @@ COPY public.detalle_compra (id, producto_id, compra_id, cantidad) FROM stdin;
 41	2	32	3
 42	8	32	3
 43	9	33	5
-44	1	34	3
-45	2	34	3
 \.
 
 
@@ -325,10 +322,10 @@ COPY public.producto (id, descripcion, stock, precio) FROM stdin;
 18	producto18	2	9383
 19	producto19	6	1140
 20	producto20	4	102
+1	producto1	6	9107
+2	producto2	5	1760
 8	producto8	0	8923
 9	producto9	3	4219
-1	producto1	3	9107
-2	producto2	2	1760
 \.
 
 
@@ -343,14 +340,14 @@ SELECT pg_catalog.setval('public.cliente_id_seq', 12, true);
 -- Name: compra_id_seq; Type: SEQUENCE SET; Schema: public; Owner: CrissRayes
 --
 
-SELECT pg_catalog.setval('public.compra_id_seq', 41, true);
+SELECT pg_catalog.setval('public.compra_id_seq', 38, true);
 
 
 --
 -- Name: detalle_compra_id_seq; Type: SEQUENCE SET; Schema: public; Owner: CrissRayes
 --
 
-SELECT pg_catalog.setval('public.detalle_compra_id_seq', 63, true);
+SELECT pg_catalog.setval('public.detalle_compra_id_seq', 60, true);
 
 
 --
