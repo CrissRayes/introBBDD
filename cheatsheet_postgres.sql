@@ -85,6 +85,15 @@ CHECK 		-- Todos los valores de una columna deben satisfacer una condición en e
 DEFAULT 	-- Le da un valor por defecto a aquellos registros que no tengan un valor asignado.
 INDEX 		-- Sirveparacrearyrecuperardatosdeformarápida.
 
+-- Eliminar fila(s) de una tabla
+DELETE FROM nombre_tabla
+WHERE [condicion]
+
+-- Ejemplo:
+DELETE FROM clientes
+WHERE nombre = 'cristian'	-- podría ser sólo esta condición.
+AND apellido = 'perez';		-- o además podemos usar un AND y agragar otra(s) condiciones.
+
 
 -- Eliminar una tabla.
 DROP TABLE nombre_tabla; 
