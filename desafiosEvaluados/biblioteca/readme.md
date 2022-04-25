@@ -3,9 +3,9 @@
 ### Parte 1
 
 1. Realizar el modelo conceptual, considerando las entidades y relaciones entre ellas.(1 Punto)
-   ![Screenshot](/img/modelo_conceptual.jpg)
+   ![Screenshot](img/modelo_conceptual.jpg)
 2. Realizar el modelo lógico, considerando todas las entidades y las relaciones entre ellas, los atributos, normalización y creación de tablas intermedias de ser necesario. (2 Puntos)
-   ![Screenshot](/img/modelo_logico.jpeg)
+   ![Screenshot](img/modelo_logico.jpeg)
 3. Realizar el modelo físico, considerando la especificación de tablas y columnas, además de las claves externas. (2 Puntos)
    El modelo físico se encuentra en el archivo [biblioteca.sql](biblioteca.sql).
 
