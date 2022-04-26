@@ -1,6 +1,10 @@
+-- Primero se crea la base de datos
 CREATE DATABASE biblioteca;
+
+-- Luego nos movemos hacia la base de datos creada
 \c biblioteca
 
+-- Se crea la tabla socios
 CREATE TABLE socios(
   rut VARCHAR(10) NOT NULL UNIQUE,
   nombre VARCHAR(20) NOT NULL,
@@ -10,6 +14,7 @@ CREATE TABLE socios(
   PRIMARY KEY(rut)
 );
 
+-- Se crea la tabla libros
 CREATE TABLE libros(
   isbn INT(13) NOT NULL UNIQUE,
   titulo VARCHAR(100) NOT NULL,
@@ -17,6 +22,7 @@ CREATE TABLE libros(
   PRIMARY KEY (isbn)
 );
 
+-- Se crea la tabla préstamos
 CREATE TABLE prestamos(
   id SERIAL,
   socio_id VARCHAR,
@@ -28,6 +34,7 @@ CREATE TABLE prestamos(
   FOREIGN KEY libro_id REFERENCES libros(isbn)
 );
 
+-- Se crea la tabla autores
 CREATE TABLE autores(
   id SERIAL,
   nombre VARCHAR(20) NOT NULL,
@@ -37,12 +44,14 @@ CREATE TABLE autores(
   PRIMARY KEY(id)
 );
 
+-- Se crea la tabla tipos_autor
 CREATE TABLE tipos_autor(
   id SERIAL,
   tipo_autor VARCHAR(10) NOT NULL,
   PRIMARY KEY(id)
 );
 
+-- Se crea la tabla autores_libros
 CREATE TABLE autores_libros(
   libro_id INT,
   autor_id INT,
@@ -51,4 +60,5 @@ CREATE TABLE autores_libros(
   FOREIGN KEY autor_id REFERENCES autores(id),
   FOREIGN KEY tipo_autor REFERENCES tipos_autor(id),
 );
+
 
