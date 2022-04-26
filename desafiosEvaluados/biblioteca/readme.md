@@ -8,4 +8,4 @@
 
 ### Parte 2
 
-Todas las respuestas de la parte 2 se encuentran en el archivo [biblioteca.sql](/biblioteca.sql).
+Todas las respuestas de la parte 2 se encuentran en el archivo [biblioteca.sql](biblioteca.sql).
