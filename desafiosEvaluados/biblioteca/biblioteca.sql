@@ -1,5 +1,3 @@
-\c CrissRayes
-DROP DATABASE biblioteca;
 -- 1.- Crear el modelo en una base de datos llamada biblioteca, considerando las tablas definidas y sus atributos. (2 puntos).
 
 -- Primero se crea la base de datos
@@ -173,3 +171,35 @@ VALUES('444-4444444-444', 5, 1);
 
 -- Verificando datos insertados
 SELECT * FROM autores_libros;
+
+
+-- 3.- Realizar las siguientes consultas:
+-- a. Mostrar todos los libros que posean menos de 300 páginas
+SELECT * FROM libros
+WHERE paginas < 300;
+
+-- b. Mostrar todos los autores que hayan nacido despues del 01-01-1970
+SELECT * FROM autores
+WHERE fecha_nacimiento > '1970-01-01';
+
+-- c. ¿Cuál es el libro más solicitado?
+SELECT prestamos.libro_id,
+libros.titulo,
+COUNT(libro_id) veces_solicitado
+FROM libros
+INNER JOIN prestamos 
+ON prestamos.libro_id = libros.isbn
+GROUP BY prestamos.libro_id, libros.titulo 
+ORDER BY veces_solicitado DESC;
+
+-- d. Si se cobrara una multa de $100 por cada día de atraso, mostrar cuánto debería pagar cada usuario que entregue el préstamo después de 7 días.
+
+SELECT socio_id,
+socios.nombre,
+socios.apellido,
+(fecha_devolucion - fecha_prestamo - 7) AS dias_atraso,
+((fecha_devolucion - fecha_prestamo - 7) * 100) AS multa
+FROM prestamos
+INNER JOIN socios
+ON socios.rut = prestamos.socio_id
+WHERE (fecha_devolucion - fecha_prestamo) > 7;
